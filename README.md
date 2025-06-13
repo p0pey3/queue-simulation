@@ -35,3 +35,12 @@ Each time a PRNG generate a random number, the current state is changed.
 - 64-bit period (if not available, 32-bit is okay)
 - Accepts an integer as seed
 - Output a 2x2 matrix of random numbers in the interval [0, 1]
+
+### Suggested PRNG
+1. `LCG` (Linear Congruential Generator)
+    - The algorithm already in the lecture notes, just need the constants
+
+2. `PCG` (Permuted Congruential Generator)
+
+3. `xorshiftr+` (XOR, shift, reduced)
+    - Note that there is a lot of variation of this one, make sure to carefully read the name (there is no typo there)
