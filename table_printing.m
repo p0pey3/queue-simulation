@@ -11,7 +11,7 @@ function table_printing()
     printf('  +--------------------------------------------------------------+ \n');
 
     for i = 1:numel(IAT)
-        printf('  |%11d         |%7d      |%.2f | %13s       |\n', IAT(i), IATProbability(i), IATcdf(i), IATrange{i});
+        printf('  |%11d         | % 8.2f    |%.2f | %13s       |\n', IAT(i), IATProbability(i), IATcdf(i), IATrange{i});
     end
 
     printf('  +--------------------------------------------------------------+ \n');
@@ -29,7 +29,7 @@ function table_printing()
     printf('  +-------------------------------------------------------------------------------------------+ \n');
 
     for i = 1:numel(petrol)
-        printf('  |%27s   |%7d      |%1.2f | %10s           |%9d        |\n', petrol{i}, petrolProbability(i), petrolCDF(i), petrolRange{i}, petrolPrice(i));
+        printf('  |%27s   | % 8.2f    |%1.2f | %10s           |%9d        |\n', petrol{i}, petrolProbability(i), petrolCDF(i), petrolRange{i}, petrolPrice(i));
     end
 
     printf('  +-------------------------------------------------------------------------------------------+ \n');
@@ -46,7 +46,7 @@ function table_printing()
     printf('  +------------------------------------------------------+ \n');
 
     for i = 1:numel(refuel)
-        printf('  |%7d         |%8d       |%1.2f | %10s    |\n', refuel(i), refuelProbability(i), refuelCDF(i), refuelRange{i});
+        printf('  |%7d         | % 8.2f     |%1.2f | %10s     |\n', refuel(i), refuelProbability(i), refuelCDF(i), refuelRange{i});
     end
 
     printf('  +------------------------------------------------------+ \n');
@@ -77,7 +77,7 @@ function table_printing()
     printf('  +===============================================================+ \n');
 
     for i = 1:numel(car_num)
-        printf('  | %8d     | %7d      | %15d                |\n', arrivalTime(i), lineNum(i), randRefuel(i));
+        printf('  | %8d     | %7d     | %15d                  |\n', arrivalTime(i), lineNum(i), randRefuel(i));
     end
 
     printf('  +===============================================================+ \n');
@@ -90,7 +90,7 @@ function table_printing()
     % printf('  +=========================================================================================================================+ \n');
 
     % for i = 1:numel(car_num)
-    %     printf('  | %7d        | %27s  | %9d        | %9d        | %18d               |\n', car_num(i), petrol{i}, quantity(i), totalPrice(i), randIAT(i));
+    %     printf('  | %7d        | %27s  | %9d        | %9d        | %18d              |\n', car_num(i), petrol{i}, quantity(i), totalPrice(i), randIAT(i));
     % end
 
     % printf('  +=========================================================================================================================+ \n');
