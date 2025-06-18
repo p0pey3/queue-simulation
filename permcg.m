@@ -1,35 +1,34 @@
-function r = pcg(seed, n)
-%   r = pcg(seed, n) returns n integers in [1, 100] using PCG logic
-%   dogwater freemat doesnt allow bit-wise operations apparently
+function r = permcg(seed, n)
 
-    % Constants for pcg (at least on the website)
-    multiplier = 6364136223846793005;     %multiplier used for LCG
-    increment  = 1442695040888963407;     %selects the way to generate independent random num
-    mod64      = 2^64;
+    % Constants (from PCG spec)
+    multiplier = uint32(hex2dec('5851F42D'));  % 1481765933, lower 32 bits of the og 64 bit const
+    increment = uint32(hex2dec('4C957F2D'));   % 1284865837, same thing as above
+    modulus = uint32(2^32);
 
-    % Initial state
-    state = mod(seed, mod64);
-
+    % Initialize state
+    state = uint32(seed);
     r = zeros(1, n);
 
     for k = 1:n
-        % Update state with the formula from the website
-        state = mod(multiplier * state + increment, mod64);
+        % Advance state using LCG with modulo 2^32
+        state = mod(double(state) * double(multiplier) + double(increment), 2^32);
+        state = uint32(state);  % Ensure it's uint32 again
 
-        % xor shifts the bits to the right by 18 and then 27 bits.
-        shifted1 = floor(state / 2^18);          % divide the current state with 18 bits to shift it 18 units
-        xored    = mod(shifted1 + state, mod64);  % simulate XOR via mod
-        xorshifted = floor(xored / 2^27);         %shift it by 27 bits 
+        % Xor-shift: xorshifted = state ^ (state >> 11)
+        shifted = floor(double(state) / 2^11);
+        xorshifted = bitxor(state, uint32(shifted));
 
-        % decide how many bits to rotate, get this by using the upper 5 bits of state
-        rot = floor(state / 2^59);    % since state is 64 bit, dividing it with the lower 59 bits should give u the upper 5
-        rot = mod(rot, 32);           % make sure that the derived num is within 0-31, since thats the bit length of the final random num 
+        % Rotation amount: bottom 5 bits of state
+        rot = bitand(state, uint32(31));  % equivalent to state % 32
 
-        % Simulate rotate-right of 32-bit value
-        val = mod(floor(xorshifted / 2^rot) + ...
-                  mod(xorshifted, 2^rot) * 2^(32 - rot), 2^32);
+        % Emulate rotate-right:
+        val = double(xorshifted);
+        rot = double(rot);
+        right = floor(val / 2^rot);
+        left = mod(val, 2^rot) * 2^(32 - rot);
+        rotated = mod(right + left, 2^32);
 
-        % Scale to [1, 100]
-        r(k) = floor(mod(val, 100))+1;
+        % Map to range [1, 100]
+        r(k) = mod(rotated, 100) + 1;
     end
 end
