@@ -51,4 +51,49 @@ function table_printing()
 
     printf('  +------------------------------------------------------+ \n');
     printf('\n\n\n');
+
+    car_num = [1, 2, 3, 4, 5];  
+    quantity = [0, 0, 0, 0, 0]; 
+    totalPrice = [0, 0, 0, 0, 0];
+    randIAT = [0, 0, 0, 0, 0];
+    arrivalTime = [0, 0, 0, 0, 0];
+    lineNum = [1, 2, 1, 2, 1];  
+    randRefuel = [0, 0, 0, 0, 0];
+
+    printf('                                                 ===Results of Simulation===\n'); 
+    printf('  +=========================================================================================================================+ \n');
+    printf('  | Vehicle Number |        Type of Petrol        | Quantity (litre) | Total Price (RM) | Random Num for Inter-Arrival Time | \n');
+    printf('  +=========================================================================================================================+ \n');
+
+    for i = 1:numel(car_num)
+        printf('  | %7d        | %27s  | %9d        | %9d        | %18d                |\n', car_num(i), petrol{i}, quantity(i), totalPrice(i), randIAT(i));
+    end
+
+    printf('  +=========================================================================================================================+ \n');
+    printf('\n'); 
+
+    printf('  +===============================================================+ \n');
+    printf('  | Arrival Time | Line Number | Random Number for Refueling Time | \n');
+    printf('  +===============================================================+ \n');
+
+    for i = 1:numel(car_num)
+        printf('  | %8d     | %7d      | %15d                |\n', arrivalTime(i), lineNum(i), randRefuel(i));
+    end
+
+    printf('  +===============================================================+ \n');
+    printf('\n\n\n'); 
+
+    
+    printf('                                                 ===Results of Simulation===\n'); 
+    printf('  +=========================================================================================================================+ \n');
+    printf('  | Vehicle Number |        Type of Petrol        | Quantity ( | Total Price (RM) | Random Num for Inter-Arrival Time | \n');
+    printf('  +=========================================================================================================================+ \n');
+
+    for i = 1:numel(car_num)
+        printf('  | %7d        | %27s  | %9d        | %9d        | %18d               |\n', car_num(i), petrol{i}, quantity(i), totalPrice(i), randIAT(i));
+    end
+
+    printf('  +=========================================================================================================================+ \n');
+    printf('\n\n\n'); 
+ 
 end 
