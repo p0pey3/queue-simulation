@@ -26,30 +26,34 @@ number_of_cars = 10;                     % Number of cars to generate, replace t
 selected_prng = 1;                      % Selected PRNG, replace this with user input
 seed = rand();                          % randomise the seed
 
-randomised = zeros(1, number_of_cars*3);      % initialise array to hold car values
+randomised = zeros(3, number_of_cars);      % initialise matrix to hold car values
 
+disp(randomised);
 % ARRAY STRUCTURE:
-% For each car we have 3 randomised values, so we will have 3*N values in the randomised array
-% For N  number of cars, the first N entries of the array will be for petrol type, 
-% the second N entries of the array will be for interarrival
-% and the third N entries will be for service time
+% For each car we have 3 randomised values, so we will have 3 rows of N values in the randomised array
+% For N  number of cars, the first row of the matrix will be for petrol type, 
+% the second row of the matrix will be for interarrival
+% and the third row will be for service time
 
 % eg: for 5 cars, 
-% [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]   (3*5 cars= 15 entries)
+% [1, 2, 3, 4, 5;
+%  6, 7, 8, 9,10;
+% 11,12,13,14,15]   
 % Petrol type = [1,2,3,4,5]
 % Interarrival = [6,7,8,9,10]
 % Service time =[11,12,13,14,15]
 % generate randomised values based on the selected PRNG
 switch selected_prng
     case 1
-        randomised = permcg(seed, number_of_cars*3);
+        randomised = permcg(seed, number_of_cars);
     case 2
-        randomised = lcg(seed, number_of_cars*3);
+        randomised = lcg(seed, number_of_cars);
     case 3
-        randomised = xorshiftrp(seed, number_of_cars*3);
+        randomised = xorshiftrp(seed, number_of_cars);
     otherwise
         error('Invalid PRNG selection');
 end
+disp(randomised)
 %print out the randomised values
 for i = 1:number_of_cars*3
     fprintf('Randomised value %d: %d\n', i, randomised(i));
