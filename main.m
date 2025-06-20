@@ -22,7 +22,7 @@ table_printing(cars);
 
 %   BELOW THIS IS THE RNG SHITEEEEE
 
-number_of_cars = 5;                     % Number of cars to generate, replace this with user input
+number_of_cars = 10;                     % Number of cars to generate, replace this with user input
 selected_prng = 1;                      % Selected PRNG, replace this with user input
 seed = rand();                          % randomise the seed
 randomised = zeros(1, number_of_cars*3);      % initialise array to hold car values
@@ -38,10 +38,8 @@ switch selected_prng
         error('Invalid PRNG selection');
 end
 %print out the randomised values
-for i = 1:number_of_cars
-    for j = 1:3
-        fprintf('value %d: %d\n', j, randomised((i-1)*3 + j));
-    end
+for i = 1:number_of_cars*3
+    fprintf('Randomised value %d: %d\n', i, randomised(i));
 end
 
 % initialise array to hold petrol type values
