@@ -1,3 +1,6 @@
+% Input parameter: nothing
+% Output: an array of format [number of cars, seed value, PRNG selection]
+
 function result = get_user_input()
     printf('Welcome to Queue Simulator\n');
 
