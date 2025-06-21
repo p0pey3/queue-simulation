@@ -30,18 +30,17 @@ randomised = zeros(number_of_cars,3);      % initialise matrix to hold car value
 
 disp(randomised);
 % ARRAY STRUCTURE:
-% For each car we have 3 randomised values, so we will have 3 rows of N values in the randomised array
-% For N  number of cars, the first row of the matrix will be for petrol type, 
-% the second row of the matrix will be for interarrival
-% and the third row will be for service time
+% For each car we have 3 randomised values, so we will have 3 coloumns of N values in the randomised array
+% For N  number of cars, the first coloumn of the matrix will be for petrol type, 
+% the second coloumn of the matrix will be for interarrival
+% and the third coloumn will be for service time
 
-% eg: for 5 cars, 
-% [1, 2, 3, 4, 5;
-%  6, 7, 8, 9,10;
-% 11,12,13,14,15]   
-% Petrol type = [1,2,3,4,5]
-% Interarrival = [6,7,8,9,10]
-% Service time =[11,12,13,14,15]
+% eg: for 2 cars, 
+% [1, 3, 5;
+%  2, 4, 6]  
+% Petrol type = [1,2]
+% Interarrival = [3,4]
+% Service time =[5,6]
 % generate randomised values based on the selected PRNG
 switch selected_prng
     case 1
